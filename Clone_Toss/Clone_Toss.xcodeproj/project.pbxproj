@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		402215DA287F841700FC222B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402215D9287F841700FC222B /* TabBarController.swift */; };
+		402215DD287F849A00FC222B /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402215DC287F849A00FC222B /* TempViewController.swift */; };
 		40B5CDA8287F589E007B18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDA7287F589E007B18BA /* AppDelegate.swift */; };
 		40B5CDAA287F589E007B18BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDA9287F589E007B18BA /* SceneDelegate.swift */; };
 		40B5CDAC287F589E007B18BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDAB287F589E007B18BA /* HomeViewController.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		402215D9287F841700FC222B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		402215DC287F849A00FC222B /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
 		40B5CDA4287F589E007B18BA /* Clone_Toss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clone_Toss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B5CDA7287F589E007B18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40B5CDA9287F589E007B18BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +87,9 @@
 		40B5CDBC287F5928007B18BA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				40B5CDCA287F5D9F007B18BA /* TabBar */,
 				40B5CDBE287F59AE007B18BA /* Home */,
+				402215DC287F849A00FC222B /* TempViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -102,6 +108,14 @@
 				40B5CDAB287F589E007B18BA /* HomeViewController.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		40B5CDCA287F5D9F007B18BA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				402215D9287F841700FC222B /* TabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +200,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				40B5CDAC287F589E007B18BA /* HomeViewController.swift in Sources */,
+				402215DD287F849A00FC222B /* TempViewController.swift in Sources */,
+				402215DA287F841700FC222B /* TabBarController.swift in Sources */,
 				40B5CDA8287F589E007B18BA /* AppDelegate.swift in Sources */,
 				40B5CDAA287F589E007B18BA /* SceneDelegate.swift in Sources */,
 			);
