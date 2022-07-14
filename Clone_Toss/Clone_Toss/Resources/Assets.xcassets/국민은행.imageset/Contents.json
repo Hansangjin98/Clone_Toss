@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "com.kbstar.kbbank.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

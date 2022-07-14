@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		402215DA287F841700FC222B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402215D9287F841700FC222B /* TabBarController.swift */; };
 		402215DD287F849A00FC222B /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402215DC287F849A00FC222B /* TempViewController.swift */; };
+		4058B537288014F3000FE0C4 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058B536288014F3000FE0C4 /* HomeTableViewCell.swift */; };
+		4058B53A28801EB9000FE0C4 /* HomeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058B53928801EB9000FE0C4 /* HomeTableViewModel.swift */; };
+		4058B53C2880621A000FE0C4 /* HomeTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4058B53B2880621A000FE0C4 /* HomeTableHeaderView.swift */; };
 		40B5CDA8287F589E007B18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDA7287F589E007B18BA /* AppDelegate.swift */; };
 		40B5CDAA287F589E007B18BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDA9287F589E007B18BA /* SceneDelegate.swift */; };
 		40B5CDAC287F589E007B18BA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B5CDAB287F589E007B18BA /* HomeViewController.swift */; };
@@ -23,6 +26,9 @@
 /* Begin PBXFileReference section */
 		402215D9287F841700FC222B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		402215DC287F849A00FC222B /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		4058B536288014F3000FE0C4 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		4058B53928801EB9000FE0C4 /* HomeTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewModel.swift; sourceTree = "<group>"; };
+		4058B53B2880621A000FE0C4 /* HomeTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableHeaderView.swift; sourceTree = "<group>"; };
 		40B5CDA4287F589E007B18BA /* Clone_Toss.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clone_Toss.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40B5CDA7287F589E007B18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40B5CDA9287F589E007B18BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4058B535288014B8000FE0C4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4058B536288014F3000FE0C4 /* HomeTableViewCell.swift */,
+				4058B53B2880621A000FE0C4 /* HomeTableHeaderView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4058B53828801EAB000FE0C4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4058B53928801EB9000FE0C4 /* HomeTableViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		40B5CD9B287F589E007B18BA = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +128,8 @@
 		40B5CDBE287F59AE007B18BA /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4058B53828801EAB000FE0C4 /* Model */,
+				4058B535288014B8000FE0C4 /* Cell */,
 				40B5CDAB287F589E007B18BA /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -199,9 +224,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4058B537288014F3000FE0C4 /* HomeTableViewCell.swift in Sources */,
+				4058B53C2880621A000FE0C4 /* HomeTableHeaderView.swift in Sources */,
 				40B5CDAC287F589E007B18BA /* HomeViewController.swift in Sources */,
 				402215DD287F849A00FC222B /* TempViewController.swift in Sources */,
 				402215DA287F841700FC222B /* TabBarController.swift in Sources */,
+				4058B53A28801EB9000FE0C4 /* HomeTableViewModel.swift in Sources */,
 				40B5CDA8287F589E007B18BA /* AppDelegate.swift in Sources */,
 				40B5CDAA287F589E007B18BA /* SceneDelegate.swift in Sources */,
 			);

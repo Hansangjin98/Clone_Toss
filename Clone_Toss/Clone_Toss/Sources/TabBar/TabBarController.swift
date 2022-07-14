@@ -39,6 +39,8 @@ private extension TabBarController {
         tabBar.layer.cornerRadius = 20
         tabBar.layer.borderWidth = 0.3
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
+        tabBar.layer.masksToBounds = true
+        tabBar.isTranslucent = true 
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .selected)
