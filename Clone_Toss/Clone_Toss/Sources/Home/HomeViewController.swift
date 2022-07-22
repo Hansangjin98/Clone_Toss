@@ -20,9 +20,9 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     ]
     
     private let assetsData = [
-        HomeTableViewModel(iconImage: UIImage(named: "국민은행")!, titleText: "KB나라사랑우대통장", subTitleText: "1,000,000 원"),
-        HomeTableViewModel(iconImage: UIImage(named: "카카오뱅크")!, titleText: "입출금통장", subTitleText: "700,000 원"),
-        HomeTableViewModel(iconImage: UIImage(named: "신한은행")!, titleText: "네이버페이 라인프렌즈 신한카드", subTitleText: "500,000 원"),
+        HomeTableViewModel(iconImage: UIImage(named: "국민은행")!, titleText: "KB나라사랑우대통장", subTitleText: "1,123,456 원"),
+        HomeTableViewModel(iconImage: UIImage(named: "카카오뱅크")!, titleText: "입출금통장", subTitleText: "789,123 원"),
+        HomeTableViewModel(iconImage: UIImage(named: "신한은행")!, titleText: "네이버페이 라인프렌즈 신한카드", subTitleText: "500,123 원"),
         HomeTableViewModel(iconImage: UIImage(named: "농협")!, titleText: "농협장기적금", subTitleText: "30,000,000 원"),
         HomeTableViewModel(iconImage: UIImage(named: "포인트")!, titleText: "포인트·머니·5개", subTitleText: "8,766 원")
     ]
@@ -40,10 +40,12 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         $0.backgroundColor = .white
         $0.layer.borderWidth = 0.3
         $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         $0.isHidden = true
     }
     private lazy var bottomLine = UIView().then {
         $0.backgroundColor = .systemGray6
+        $0.isHidden = true
     }
     private lazy var bottomLabel = UILabel().then {
         $0.font = .systemFont(ofSize: 20, weight: .semibold)
@@ -212,13 +214,13 @@ private extension HomeViewController {
         
         bottomView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(660)
+            $0.height.equalTo(70)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview()
         }
         
         bottomLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
-            $0.top.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(18)
         }
         
         bottomLine.snp.makeConstraints {
@@ -321,6 +323,9 @@ private extension HomeViewController {
     func initConsumptionView() {
         if bottomView.frame.origin.y > 600 {
             scrollDirection = .UP
+            consumptionTableView.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview()
+            }
             bottomView.snp.updateConstraints {
                 $0.leading.trailing.equalToSuperview()
             }
@@ -331,10 +336,12 @@ private extension HomeViewController {
                 $0.leading.equalToSuperview().offset(40)
             }
             bottomView.isHidden = false
+            bottomLine.isHidden = false
             tabBarController?.tabBar.layer.borderWidth = 0
             tabBarController?.tabBar.layer.cornerRadius = 0
         } else {
             scrollDirection = .DOWN
+            bottomLine.isHidden = true
             bottomView.isHidden = true
         }
         
@@ -342,8 +349,16 @@ private extension HomeViewController {
     }
     
     func consumptionBarDown() {
+        bottomLine.isHidden = true
+        bottomView.layer.borderWidth = 0
+        
         UIView.animate(withDuration: 0.3, animations: {
-            self.bottomView.snp.updateConstraints {
+            self.consumptionTableView.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(20)
+            }
+            self.bottomView.snp.remakeConstraints {
+                $0.top.equalTo(self.consumptionTableView)
+                $0.height.equalTo(70)
                 $0.leading.trailing.equalToSuperview().inset(20)
             }
             self.bottomLine.snp.updateConstraints {
@@ -352,6 +367,7 @@ private extension HomeViewController {
             self.bottomLabel.snp.updateConstraints {
                 $0.leading.equalToSuperview().offset(20)
             }
+            self.consumptionTableView.layoutIfNeeded()
             self.bottomView.layoutIfNeeded()
         }, completion: { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -364,8 +380,15 @@ private extension HomeViewController {
     func consumptionBarUp() {
         tabBarController?.tabBar.layer.borderWidth = 0
         tabBarController?.tabBar.layer.cornerRadius = 0
+        bottomView.layer.borderWidth = 0.3
+        bottomLine.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
-            self.bottomView.snp.updateConstraints {
+            self.consumptionTableView.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview()
+            }
+            self.bottomView.snp.remakeConstraints {
+                $0.top.equalToSuperview().offset(660)
+                $0.height.equalTo(70)
                 $0.leading.trailing.equalToSuperview()
             }
             self.bottomLine.snp.updateConstraints {
@@ -375,6 +398,7 @@ private extension HomeViewController {
                 $0.leading.equalToSuperview().offset(40)
             }
             self.bottomView.layoutIfNeeded()
+            self.consumptionTableView.layoutIfNeeded()
         }, completion: { _ in
             self.bottomView.isHidden = false
         })
