@@ -36,6 +36,20 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
     private var scrollDirection: ScrollDirection?
     private lazy var lastContentOffset: CGFloat = 0
     
+    private lazy var bottomView = UIView().then {
+        $0.backgroundColor = .white
+        $0.layer.borderWidth = 0.3
+        $0.layer.borderColor = UIColor.lightGray.cgColor
+        $0.isHidden = true
+    }
+    private lazy var bottomLine = UIView().then {
+        $0.backgroundColor = .systemGray6
+    }
+    private lazy var bottomLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.text = "소비"
+    }
+    
     private let topView = UIView().then {
         $0.backgroundColor = .systemGray6
         $0.alpha = 0.97
@@ -109,8 +123,9 @@ final class HomeViewController: UIViewController, UIScrollViewDelegate {
         setupBinding()
     }
     
-    override func viewWillLayoutSubviews() {
-        initConsumptionTableView()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initConsumptionView()
     }
 }
 
@@ -131,6 +146,10 @@ private extension HomeViewController {
         contentView.addSubview(assetsTableView)
         contentView.addSubview(bankTableView)
         contentView.addSubview(consumptionTableView)
+        
+        view.addSubview(bottomView)
+        bottomView.addSubview(bottomLabel)
+        bottomView.addSubview(bottomLine)
     }
     
     func setupLayouts() {
@@ -189,6 +208,23 @@ private extension HomeViewController {
             $0.top.equalTo(assetsTableView.snp.bottom).offset(20)
             $0.height.equalTo(190)
             $0.bottom.equalToSuperview().offset(-100)
+        }
+        
+        bottomView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(660)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview()
+        }
+        
+        bottomLabel.snp.makeConstraints {
+            $0.leading.equalToSuperview().offset(20)
+            $0.top.equalToSuperview().offset(20)
+        }
+        
+        bottomLine.snp.makeConstraints {
+            $0.height.equalTo(2)
+            $0.top.equalTo(bottomLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
     }
     
@@ -265,7 +301,6 @@ private extension HomeViewController {
             .bind { [weak self] in
                 guard let self = self else { return }
                 let scrollY = self.scrollView.contentOffset.y
-                print(scrollY)
                 if self.lastContentOffset > scrollY {
                     if self.scrollDirection == .DOWN { self.scrollDirection = .UP}
                     if self.scrollDirection == .UP && scrollY < 40 {
@@ -283,31 +318,65 @@ private extension HomeViewController {
             .disposed(by: disposeBag)
     }
     
-    func initConsumptionTableView() {
-        if consumptionTableView.frame.origin.y > 650 {
+    func initConsumptionView() {
+        if bottomView.frame.origin.y > 600 {
             scrollDirection = .UP
-            consumptionTableView.snp.updateConstraints {
+            bottomView.snp.updateConstraints {
                 $0.leading.trailing.equalToSuperview()
             }
+            bottomLine.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(40)
+            }
+            bottomLabel.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(40)
+            }
+            bottomView.isHidden = false
+            tabBarController?.tabBar.layer.borderWidth = 0
+            tabBarController?.tabBar.layer.cornerRadius = 0
         } else {
             scrollDirection = .DOWN
+            bottomView.isHidden = true
         }
+        
+        bottomView.layer.cornerRadius = 20
     }
     
     func consumptionBarDown() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.consumptionTableView.snp.updateConstraints {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomView.snp.updateConstraints {
                 $0.leading.trailing.equalToSuperview().inset(20)
             }
-            self.consumptionTableView.layoutIfNeeded()
+            self.bottomLine.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(20)
+            }
+            self.bottomLabel.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(20)
+            }
+            self.bottomView.layoutIfNeeded()
+        }, completion: { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.bottomView.isHidden = true
+            }
+            self.tabBarController?.tabBar.layer.borderWidth = 0.3
+            self.tabBarController?.tabBar.layer.cornerRadius = 20
         })
     }
     func consumptionBarUp() {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.consumptionTableView.snp.updateConstraints {
+        tabBarController?.tabBar.layer.borderWidth = 0
+        tabBarController?.tabBar.layer.cornerRadius = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bottomView.snp.updateConstraints {
                 $0.leading.trailing.equalToSuperview()
             }
-            self.consumptionTableView.layoutIfNeeded()
+            self.bottomLine.snp.updateConstraints {
+                $0.leading.trailing.equalToSuperview().inset(40)
+            }
+            self.bottomLabel.snp.updateConstraints {
+                $0.leading.equalToSuperview().offset(40)
+            }
+            self.bottomView.layoutIfNeeded()
+        }, completion: { _ in
+            self.bottomView.isHidden = false
         })
     }
 }

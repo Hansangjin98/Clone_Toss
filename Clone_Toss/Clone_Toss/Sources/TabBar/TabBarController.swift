@@ -35,12 +35,12 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     private func setupTabBar() {
         tabBar.tintColor = .black
-        tabBar.backgroundColor = .white
+        tabBar.barTintColor = .white
         tabBar.layer.cornerRadius = 20
         tabBar.layer.borderWidth = 0.3
         tabBar.layer.borderColor = UIColor.lightGray.cgColor
         tabBar.layer.masksToBounds = true
-        tabBar.isTranslucent = true 
+        tabBar.isTranslucent = true
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)], for: .selected)
